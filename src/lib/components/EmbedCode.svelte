@@ -10,6 +10,7 @@
    */
 
   import { browser } from "$app/environment";
+  import { onMount, tick } from "svelte";
 
   export let bodyHtml: string | undefined;
   export let size: "full" | "large" | "fit" = "large";
@@ -130,22 +131,51 @@
     bodyHtml
       ? (browser ? normalizeInBrowser(decodeWysiwygHtml(bodyHtml)) : decodeWysiwygHtml(bodyHtml))
       : undefined;
+
+  
+  /// Opacity transition
+  let vidSection: HTMLElement | null = null;
+  let isActive = false;
+
+  onMount(async () => {
+    await tick();
+
+    if (!vidSection) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isActive = entry.intersectionRatio >= 0.5;
+      },
+      {
+        threshold: [0, 0.5, 1]
+      }
+    );
+
+    requestAnimationFrame(() => {
+      if (vidSection) observer.observe(vidSection);
+    });
+
+    return () => observer.disconnect();
+  });
+
 </script>
 
+
 {#if normalizedSrc}
+<div class="vidSection"
+  bind:this={vidSection}
+  class:active={isActive}
+>
   {#if normalizedSize === "full"}
-    <figure class="my-3 full-bleed">{@html normalizedSrc}</figure>
+    <figure class="full-bleed video-section">
+      {@html normalizedSrc}
+    </figure>
   {:else if normalizedSize === "large"}
-    <figure class="my-3 full-bleed">
-      <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10 col-xxl-8">
-            {@html normalizedSrc}
-          </div>
-        </div>
-      </div>
+    <figure class="full-bleed video-section">
+      {@html normalizedSrc} 
     </figure>
   {:else}
     <figure class="my-3">{@html normalizedSrc}</figure>
   {/if}
+</div>
 {/if}
