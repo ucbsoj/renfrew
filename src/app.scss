@@ -240,7 +240,7 @@ header {
   align-items: center;
   position: relative;
 
-  p {
+  p, figure.video {
     max-width: 80%;
 
     @media (min-width: 800px) {

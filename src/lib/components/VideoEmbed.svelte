@@ -11,6 +11,7 @@
   export let controls: boolean | string | undefined = true;
   export let playsinline: boolean | string | undefined = true;
   export let mute: boolean | string | undefined = false;
+  export let loop: boolean | string | undefined = false;
 
   // Optional: for local files, allow captions track served from /static
   // Example shortcode: captions="/captions/my-video.vtt" srclang="en" label="English"
@@ -197,6 +198,7 @@
             controls={controlsBool}
             muted={muteBool}
             playsinline={playsinlineBool}
+            loop={loop}
           >
             {#if captionsSrc}
               <track kind="captions" src={captionsSrc} srclang={srclang} label={label} default />
@@ -233,6 +235,7 @@
                 controls={controlsBool}
                 muted={muteBool}
                 playsinline={playsinlineBool}
+                loop={loop}
               >
                 {#if captionsSrc}
                   <track kind="captions" src={captionsSrc} srclang={srclang} label={label} default />
@@ -258,8 +261,7 @@
     </figure>
 
   {:else if normalizedSize === 'fit'}
-    <figure class="my-3">
-      <div class="ratio ratio-16x9">
+    <figure class="my-3 video">
         {#if resolved.kind === 'file'}
           <!-- svelte-ignore a11y_media_has_caption -->
           <video
@@ -270,20 +272,22 @@
             controls={controlsBool}
             muted={muteBool}
             playsinline={playsinlineBool}
+            loop={loop}
           >
             {#if captionsSrc}
               <track kind="captions" src={captionsSrc} srclang={srclang} label={label} default />
             {/if}
           </video>
         {:else}
-          <iframe
-            src={resolved.embedUrl}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <div class="ratio ratio-16x9">
+            <iframe
+              src={resolved.embedUrl}
+              title={title}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         {/if}
-      </div>
 
       {#if caption}
         <figcaption class="mt-2 text-muted small text-center">{caption}</figcaption>
