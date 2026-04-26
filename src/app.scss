@@ -261,3 +261,69 @@ header {
     opacity: 1;
   }
 }
+
+
+figure.pullquote{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+
+  img{
+    max-width: 40%;
+    display: inline;
+    @media (max-width:900px){
+      max-width: 55%
+    }
+    @media (max-width:650px){
+      max-width: 100%;
+    }
+  }
+
+  cite.cite{
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 100;
+    font-style: normal;
+    color: #ffffff;
+  }
+
+  figcaption{
+    color: #ffffff !important;
+    font-family: "Newsreader" !important;
+    margin-top: 3rem !important;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.3rem;
+    max-width: 80%;
+    quotes: "“" "”";
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+    @media (max-width:650px){
+      max-width: 100%;
+      font-size: 2.5rem;
+    }
+  }
+
+  &.right{
+
+    text-align: right;
+
+    figcaption{
+      margin-left: auto;
+    }
+    
+  }
+
+}
+
+.border{
+  border: none !important;
+}

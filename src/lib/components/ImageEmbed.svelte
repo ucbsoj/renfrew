@@ -2,6 +2,8 @@
 <script lang="ts">
   export let src: string | undefined;
   export let alt: string | undefined;
+  export let cite: string | undefined;
+  export let extraClass: string | undefined;
   export let caption: string | undefined;
   export let size: 'full' | 'large' | 'fit' = 'large';
 
@@ -61,22 +63,28 @@
 
 {#if shouldRender}
   {#if size === 'full'}
-    <figure class="my-3 full-bleed">
-      <img src={finalSrc} alt={finalAlt} class="img-fluid border" />
+    <figure class={`my-3 full-bleed ${extraClass}`}>
+      <img src={finalSrc} alt={finalAlt} class="img-fluid" />
       {#if caption}
-        <figcaption class="mt-2 text-muted small">{caption}</figcaption>
+        <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+      {/if}
+      {#if cite}
+        <cite class="cite">{@html cite}</cite>
       {/if}
     </figure>
 
   {:else if size === 'large'}
     <!-- svelte-ignore a11y_figcaption_parent -->
-    <figure class="my-3 full-bleed">
+    <figure class={`my-3 full-bleed ${extraClass}`}>
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="col-12 col-lg-10 col-xxl-8">
-            <img src={finalSrc} alt={finalAlt} class="img-fluid border" />
+            <img src={finalSrc} alt={finalAlt} class="img-fluid" />
             {#if caption}
-              <figcaption class="mt-2 text-muted small">{caption}</figcaption>
+              <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+            {/if}
+            {#if cite}
+              <cite class="cite">{@html cite}</cite>
             {/if}
           </div>
         </div>
@@ -85,10 +93,13 @@
 
   {:else}
     <!-- fit -->
-    <figure class="my-3">
-      <img src={finalSrc} alt={finalAlt} class="img-fluid border" />
+    <figure class={`my-3 ${extraClass}`}>
+      <img src={finalSrc} alt={finalAlt} class="img-fluid" />
       {#if caption}
-        <figcaption class="mt-2 text-muted small">{caption}</figcaption>
+        <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+      {/if}
+      {#if cite}
+        <cite class="cite">{@html cite}</cite>
       {/if}
     </figure>
   {/if}
