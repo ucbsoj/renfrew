@@ -10,7 +10,7 @@
   export let autoplay: boolean | string | undefined = false;
   export let controls: boolean | string | undefined = true;
   export let playsinline: boolean | string | undefined = true;
-  export let mute: boolean | string | undefined = false;
+  export let muted: boolean | string | undefined = false;
   export let loop: boolean | string | undefined = false;
 
   // Optional: for local files, allow captions track served from /static
@@ -123,7 +123,7 @@
     const autoplayBool = toBool(autoplay, false);
     const controlsBool = toBool(controls, true);
     const playsinlineBool = toBool(playsinline, true);
-    const muteBool = toBool(mute, false);
+    const muteBool = toBool(muted, false);
 
     if (isYouTubeHost(u.hostname)) {
       const id = extractYouTubeId(u);
@@ -137,7 +137,7 @@
       params.set('rel', '0');
 
       // YouTube: autoplay often requires muted
-      if (muteBool) params.set('mute', '1');
+      if (muteBool) params.set('muted', '1');
 
       const qs = params.toString();
       const embedUrl = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}${
@@ -182,7 +182,7 @@
   $: autoplayBool = toBool(autoplay, false);
   $: controlsBool = toBool(controls, true);
   $: playsinlineBool = toBool(playsinline, true);
-  $: muteBool = toBool(mute, false);
+  $: muteBool = toBool(muted, false);
 </script>
 
 {#if resolved}
