@@ -45,6 +45,10 @@ html, body {
   font-family: "Newsreader";
   font-size: 20px;
 
+  figcaption{
+    color: #F7FBC4;
+    text-align: right;
+  }
 
   &::before {
     content: "";
@@ -62,6 +66,14 @@ header {
   z-index: 1000;
 }
 
+.smaller{
+  font-size: 0.7rem;
+}
+
+.mainContainer figure:nth-of-type(2) {
+  padding-top: 6rem;
+}
+
 .headScroller {
   color: #F7FBC4;
   width: 95%;
@@ -73,8 +85,12 @@ header {
     font-weight: 400;
     font-size: 4rem !important;
     font-family: "Newsreader";
+    @media (max-width:600px){
+      font-size: 3rem !important;
+    }
   }
   
+
 
   .bg {
     position: sticky;
