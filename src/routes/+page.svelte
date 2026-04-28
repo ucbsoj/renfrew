@@ -3,7 +3,7 @@
   import DocRenderer from '$lib/components/DocRenderer.svelte';
   import type { Block } from '$lib/components/DocRenderer.svelte';
   const blocks = rawBlocks as Block[];
-
+  import { asset } from '$app/paths';
 </script>
 
 
