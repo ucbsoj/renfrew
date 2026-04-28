@@ -66,7 +66,7 @@
     <figure class={`my-3 full-bleed ${extraClass}`}>
       <img src={finalSrc} alt={finalAlt} class="img-fluid" />
       {#if caption}
-        <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+        <figcaption class="mt-2 small">{@html caption}</figcaption>
       {/if}
       {#if cite}
         <cite class="cite">{@html cite}</cite>
@@ -81,7 +81,7 @@
           <div class="col-12 col-lg-10 col-xxl-8">
             <img src={finalSrc} alt={finalAlt} class="img-fluid" />
             {#if caption}
-              <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+              <figcaption class="mt-2 small">{@html caption}</figcaption>
             {/if}
             {#if cite}
               <cite class="cite">{@html cite}</cite>
@@ -96,7 +96,7 @@
     <figure class={`my-3 ${extraClass}`}>
       <img src={finalSrc} alt={finalAlt} class="img-fluid" />
       {#if caption}
-        <figcaption class="mt-2 text-muted small">{@html caption}</figcaption>
+        <figcaption class="mt-2 small">{@html caption}</figcaption>
       {/if}
       {#if cite}
         <cite class="cite">{@html cite}</cite>
